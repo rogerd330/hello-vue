@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js To-Do</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        li {
+            padding: 5px 0;
+        }
+
+        .task-done {
+            text-decoration: line-through;
+        }
+
+        .task-todo {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h1>Vue.js To-Do App</h1>
+        <input v-model="newTask" placeholder="New Task..." v-on:keyup.enter="saveTask">
+
+        <ol>
+            <li v-for="task in tasks">
+                <input type="checkbox" v-model="task.done">
+                <button type="button" v-on:click="deleteTask(task)">&times;</button>
+                <span v-bind:class="task.done ? 'task-done' : 'task-todo'">
+                    {{ task.subject }}
+                </span>
+                <i v-bind:class="task.done ? 'fa fa-check' : 'fa fa-exclamation-circle'"></i>
+            </li>
+        </ol>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                newTask: null,
+                tasks: [
+                    {
+                        done: false,
+                        subject: 'Hit record'
+                    },
+                    {
+                        done: true,
+                        subject: 'Welcome the Students'
+                    },
+                    {
+                        done: false,
+                        subject: 'Review Homework',
+                    }
+                ],
+                saveTask: function() {
+                    this.tasks.push({
+                        done: false,
+                        subject: this.newTask
+                    });
+                    this.newTask = null;
+                },
+                deleteTask: function(task) {
+                    this.tasks = this.tasks.filter(function(e) {
+                        return e.subject != task.subject;
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
