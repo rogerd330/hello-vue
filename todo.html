@@ -60,6 +60,10 @@
                     }
                 ],
                 saveTask: function() {
+                    if (this.newTask == null) {
+                        alert('Enter a task!');
+                        return;
+                    }
                     this.tasks.push({
                         done: false,
                         subject: this.newTask
