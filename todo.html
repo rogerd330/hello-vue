@@ -37,6 +37,9 @@
                 <i v-bind:class="task.done ? 'fa fa-check' : 'fa fa-exclamation-circle'"></i>
             </li>
         </ol>
+
+        <!-- Make sure to include the parenthesis in the click function -->
+        <button type="button" v-on:click="clearAll()">Clear All</button>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -74,6 +77,9 @@
                     this.tasks = this.tasks.filter(function(e) {
                         return e.subject != task.subject;
                     });
+                },
+                clearAll: function() {
+                    this.tasks = [];
                 }
             }
         });
