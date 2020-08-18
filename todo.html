@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue.js To-Do</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <style>
         li {
@@ -38,8 +39,8 @@
             </li>
         </ol>
 
-        <!-- Make sure to include the parenthesis in the click function -->
         <button type="button" v-on:click="clearAll()">Clear All</button>
+
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -64,7 +65,7 @@
                 ],
                 saveTask: function() {
                     if (this.newTask == null) {
-                        alert('Enter a task!');
+                        alert('Enter a Task!');
                         return;
                     }
                     this.tasks.push({
